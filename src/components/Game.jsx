@@ -25,8 +25,6 @@ const Game = () => {
     }, []);
 
     const moveNoButton = () => {
-        if (isMobile) return; // No movement on mobile for better UX
-
         const container = containerRef.current;
         const buttonWidth = 100;
         const buttonHeight = 40;
@@ -85,7 +83,8 @@ const Game = () => {
                                 </button>
                                 
                                 <button
-                                    onMouseEnter={moveNoButton}
+                                    onMouseEnter={!isMobile ? moveNoButton : undefined}
+                                    onClick={isMobile ? moveNoButton : undefined}
                                     style={{
                                         position: isMobile ? 'static' : 'absolute',
                                         left: !isMobile ? `${noButtonPosition.x}px` : undefined,
@@ -99,7 +98,7 @@ const Game = () => {
                             </div>
                             {isMobile && (
                                 <p className="text-sm text-gray-600 mt-4">
-                                    *Try tapping "No" if you dare! 😉
+                                    *Try clicking "No" if you dare! 😉
                                 </p>
                             )}
                         </>
