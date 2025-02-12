@@ -84,7 +84,7 @@ const Game = () => {
                                 
                                 <button
                                     onMouseEnter={!isMobile ? moveNoButton : undefined}
-                                    onClick={isMobile ? moveNoButton : undefined}
+                                    onClick={moveNoButton}
                                     style={{
                                         position: isMobile ? 'static' : 'absolute',
                                         left: !isMobile ? `${noButtonPosition.x}px` : undefined,
@@ -96,11 +96,7 @@ const Game = () => {
                                     No 😜
                                 </button>
                             </div>
-                            {isMobile && (
-                                <p className="text-sm text-gray-600 mt-4">
-                                    *Try clicking "No" if you dare! 😉
-                                </p>
-                            )}
+                           
                         </>
                     ) : (
                         <div>
