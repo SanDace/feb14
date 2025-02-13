@@ -8,6 +8,39 @@ const Game = () => {
     const [showAnswer, setShowAnswer] = useState(false);
     const containerRef = useRef(null);
 
+    // Fixed typo in const declaration
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const handleSaveNumber = async (event) => {
+        event.preventDefault();
+
+        if (phoneNumber.length === 10) {
+            try {
+                const response = await fetch('https://number-vaap.onrender.com/api/numbers', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ phoneNumber }),
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    setPhoneNumber(''); // Clear the phone number input
+                    alert('Number saved successfully! 💖');
+                } else {
+                    setErrorMessage(data.message || 'Failed to save the number.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                setErrorMessage('Failed to save the number.');
+            }
+        } else {
+            setErrorMessage('Please enter a valid 10-digit number');
+        }
+    };
+
     const questions = [
         {
             question: "What's your favorite thing about me? 💭",
@@ -21,11 +54,10 @@ const Game = () => {
             question: "Where do you live?",
             answer: "In my heart 💝"
         },
-            {
-                question: "Do i miss you??",
-                answer: "Nha , u always in my mind 🧠"
-            },
-    
+        {
+            question: "Do i miss you??",
+            answer: "Nha , u always in my mind 🧠"
+        },
         {
             question: "Which Anime are we Watching Together? ",
             answer: "JJk, 👀"
@@ -52,14 +84,56 @@ const Game = () => {
             </div>
         },
         {
+            question: "Whats my Fav Song🤗?" ,
+            answer: 
+            "Your Voice 🎤"
+        },
+        {
+            question: "Here is a song I have written for you 🎶" ,
+            answer: 
+            <div className="flex flex-col justify-center items-center">
+            <img src="/joking2.gif" alt="Your Image" className="w-[350px] h-[300px] object-cover rounded-lg mx-auto" />
+            <p className="text-center text-sm text-gray-500 pt-4"></p>
+            </div>
+        },
+        {
             question: "You reading this  📚👨‍📖" ,
             answer: 
             <div className="flex flex-col justify-center items-center">
             <img src="/planned.gif" alt="Your Image" className="w-[260px] h-[150px] object-cover rounded-lg mx-auto" />
             <p className="text-center text-sm text-gray-500 pt-4">Was all part of my Plan</p>
             </div>
+        },
+        {
+            question: "Last but Not Least" ,
+            answer: 
+            <div className="flex flex-col justify-center items-center">
+            <img src="/NUMBER.gif" alt="Your Image" className="w-[330px] h-[250px] object-cover rounded-lg mx-auto" />
+            <div className="flex flex-col gap-2">
+            <input
+                type="tel"
+                placeholder="Enter your number Maicha"
+                pattern="[0-9]{10}"
+                minLength="10"
+                maxLength="10"
+                title="Please enter a valid 10-digit phone number"
+                required
+                className="mt-2 text-center text-sm text-gray-500 pt-2 border rounded px-4 py-2 w-[250px] focus:outline-none focus:ring-2 focus:ring-pink-300 hover:border-pink-200 transition-all duration-300"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value.slice(0, 10).replace(/[^\d]/g, ''))}
+            />
+            <button
+                onClick={handleSaveNumber}
+                className="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 px-4 rounded transition-colors duration-300"
+            >
+                Send Number 💝
+            </button>
+            {errorMessage && (
+                <p className="text-red-500 mt-2">{errorMessage}</p>
+            )}
+            </div>
+            </div>
         }
-
     ];
 
     const moveNoButton = () => {
@@ -196,7 +270,7 @@ const Game = () => {
                                     onClick={handleYesClick}
                                     className="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-lg text-xl transition-all shadow-md hover:scale-105"
                                 >
-                Yes 🙇‍♂️ 
+                                    Yes 🙇‍♂️ 
                                 </button>
                                  
                                 <button
@@ -263,7 +337,6 @@ const Game = () => {
                                     ) : (
                                         <button
                                             className="flex-1 bg-purple-500 hover:bg-purple-600 text-white py-3 rounded-lg text-xl transition-all"
-                                            // onClick={() => window.location.href = '/'}
                                             onClick={() => setShowMessage(false)}
                                         >
                                             Go Home 🏠
