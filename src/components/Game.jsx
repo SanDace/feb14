@@ -159,7 +159,7 @@ const Game = () => {
             </div>
         },
         {
-            question: "Am Still Staring at you",
+            question: "And Am Still Staring at you",
             answer:
             <div className="flex flex-col justify-center items-center">
             <img src="/star.png" alt="Your Image" className="w-[260px] h-[260px]  object-cover rounded-lg mx-auto" />
@@ -168,6 +168,7 @@ const Game = () => {
         },
         {
             question:  <div className="flex flex-col justify-center items-center">
+                <p className="text-lg font-semibold text-pink-500 animate-pulse">Wishing you a Happy Valentine's Day 💝</p>
             <img src="/d.gif" alt="Your Image" className="w-[340px] h-[200px] object-cover object-top rounded-lg mx-auto" />
             </div>,
             answer:
