@@ -103,14 +103,23 @@ const Game = () => {
             <p className="text-center text-sm text-gray-500 pt-4"></p>
             </div>
         },
-        {
-            question: "You reading this  📚👨‍📖" ,
-            answer: 
+       {
+            question: "And just remember this",
+            answer:
             <div className="flex flex-col justify-center items-center">
-            <img src="/planned.gif" alt="Your Image" className="w-[260px] h-[150px] object-cover rounded-lg mx-auto" />
-            <p className="text-center text-sm text-gray-500 pt-4">Was all part of my Plan</p>
+            <img src="/fall.gif" alt="Your Image" className="w-[390px] h-[250px]  object-cover rounded-lg mx-auto" />
+            <p className="text-center text-sm text-gray-500 pt-4">I will keep falling for you</p>
             </div>
         },
+        {
+            question: "And Am Still Staring at you",
+            answer:
+            <div className="flex flex-col justify-center items-center">
+            <img src="/star.png" alt="Your Image" className="w-[260px] h-[260px]  object-cover rounded-lg mx-auto" />
+            
+            </div>
+        },
+        
         {
             question: "Last but Not Least" ,
             answer: 
@@ -150,21 +159,6 @@ const Game = () => {
             )}
             </div>
             </div>
-        },{
-            question: "And just remember this",
-            answer:
-            <div className="flex flex-col justify-center items-center">
-            <img src="/fall.gif" alt="Your Image" className="w-[390px] h-[250px]  object-cover rounded-lg mx-auto" />
-            <p className="text-center text-sm text-gray-500 pt-4">I will keep falling for you</p>
-            </div>
-        },
-        {
-            question: "And Am Still Staring at you",
-            answer:
-            <div className="flex flex-col justify-center items-center">
-            <img src="/star.png" alt="Your Image" className="w-[260px] h-[260px]  object-cover rounded-lg mx-auto" />
-            
-            </div>
         },
         {
             question:  <div className="flex flex-col justify-center items-center">
@@ -174,8 +168,15 @@ const Game = () => {
             answer:
             <p className="text-center text-sm text-gray-500 ">I don't want the most prettiest girl to be left with empty wishes 🌸</p>
             
-        }
-
+        },
+ {
+            question: "You reading that   📚👨‍📖" ,
+            answer: 
+            <div className="flex flex-col justify-center items-center">
+            <img src="/planned.gif" alt="Your Image" className="w-[260px] h-[150px] object-cover rounded-lg mx-auto" />
+            <p className="text-center text-sm text-gray-500 pt-4">Was all part of my Plan</p>
+            </div>
+        },
     ];
 
     const moveNoButton = () => {
