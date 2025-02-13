@@ -7,13 +7,15 @@ const Game = () => {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [showAnswer, setShowAnswer] = useState(false);
     const containerRef = useRef(null);
-
     // Fixed typo in const declaration
     const [phoneNumber, setPhoneNumber] = useState('');
+    const [numberMessage, setNumberMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleSaveNumber = async (event) => {
         event.preventDefault();
+        setIsLoading(true);
 
         if (phoneNumber.length === 10) {
             try {
@@ -28,19 +30,22 @@ const Game = () => {
                 const data = await response.json();
                 if (response.ok) {
                     setPhoneNumber(''); // Clear the phone number input
-                    alert('Number saved successfully! 💖');
+                    setErrorMessage('');
+                    setNumberMessage("My Señoritarita Arigato ❤️💖💝💕💓💗")
+                
                 } else {
                     setErrorMessage(data.message || 'Failed to save the number.');
                 }
             } catch (error) {
                 console.error('Error:', error);
                 setErrorMessage('Failed to save the number.');
+            } finally {
+                setIsLoading(false);
             }
         } else {
             setErrorMessage('dont leave me empty handed 🥺🥺🥺🥺');
+            setIsLoading(false);
         }
-
-
     };
 
     const questions = [
@@ -124,11 +129,21 @@ const Game = () => {
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value.slice(0, 10).replace(/[^\d]/g, ''))}
             />
+            {numberMessage &&(<p className=" text-sm text-500">{numberMessage}</p>)}
+
             <button
                 onClick={handleSaveNumber}
-                className="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 px-4 rounded transition-colors duration-300"
+                disabled={isLoading}
+                className={`bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 px-4 rounded transition-colors duration-300 ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
             >
-                Send Number 💝
+                {isLoading ? (
+                    <div className="flex items-center justify-center">
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                        Sending...
+                    </div>
+                ) : (
+                    'Send Number 💝'
+                )}
             </button>
             {errorMessage && (
                 <p className="text-red-500 mt-2">{errorMessage}</p>
@@ -144,11 +159,19 @@ const Game = () => {
             </div>
         },
         {
+            question: "Am Still Staring at you",
+            answer:
+            <div className="flex flex-col justify-center items-center">
+            <img src="/star.png" alt="Your Image" className="w-[260px] h-[260px]  object-cover rounded-lg mx-auto" />
+            
+            </div>
+        },
+        {
             question:  <div className="flex flex-col justify-center items-center">
             <img src="/d.gif" alt="Your Image" className="w-[340px] h-[200px] object-cover object-top rounded-lg mx-auto" />
             </div>,
             answer:
-            <p className="text-center text-sm text-gray-500 ">thank you for your time and number 😎</p>
+            <p className="text-center text-sm text-gray-500 ">I don't want the prettiest girl to be left with empty wishes</p>
             
         }
 
