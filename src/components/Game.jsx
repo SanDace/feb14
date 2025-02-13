@@ -37,8 +37,10 @@ const Game = () => {
                 setErrorMessage('Failed to save the number.');
             }
         } else {
-            setErrorMessage('Please enter a valid 10-digit number');
+            setErrorMessage('dont leave me empty handed 🥺🥺🥺🥺');
         }
+
+
     };
 
     const questions = [
@@ -108,15 +110,15 @@ const Game = () => {
             question: "Last but Not Least" ,
             answer: 
             <div className="flex flex-col justify-center items-center">
-            <img src="/NUMBER.gif" alt="Your Image" className="w-[330px] h-[250px] object-cover rounded-lg mx-auto" />
+            <img src="/NUMBER.gif" alt="Your Image" className="w-[390px] h-[250px] object-cover rounded-lg mx-auto" />
             <div className="flex flex-col gap-2">
             <input
                 type="tel"
-                placeholder="Enter your number Maicha"
+                placeholder="Enter your number..... Maichaa 🥺"
                 pattern="[0-9]{10}"
                 minLength="10"
                 maxLength="10"
-                title="Please enter a valid 10-digit phone number"
+                title="dont leave me empty handed 🥺🥺🥺"
                 required
                 className="mt-2 text-center text-sm text-gray-500 pt-2 border rounded px-4 py-2 w-[250px] focus:outline-none focus:ring-2 focus:ring-pink-300 hover:border-pink-200 transition-all duration-300"
                 value={phoneNumber}
@@ -133,7 +135,23 @@ const Game = () => {
             )}
             </div>
             </div>
+        },{
+            question: "And just remember this",
+            answer:
+            <div className="flex flex-col justify-center items-center">
+            <img src="/fall.gif" alt="Your Image" className="w-[390px] h-[250px]  object-cover rounded-lg mx-auto" />
+            <p className="text-center text-sm text-gray-500 pt-4">I will keep falling for you</p>
+            </div>
+        },
+        {
+            question:  <div className="flex flex-col justify-center items-center">
+            <img src="/d.gif" alt="Your Image" className="w-[340px] h-[200px] object-cover object-top rounded-lg mx-auto" />
+            </div>,
+            answer:
+            <p className="text-center text-sm text-gray-500 ">thank you for your time and number 😎</p>
+            
         }
+
     ];
 
     const moveNoButton = () => {
@@ -172,7 +190,9 @@ const Game = () => {
     };
 
     const handlePreviousQuestion = () => {
-        if (currentQuestionIndex > 0) {
+        if (currentQuestionIndex === 0) {
+            setShowMessage(false); // Go back to home if on first question
+        } else {
             setCurrentQuestionIndex(prev => prev - 1);
             setShowAnswer(false);
         }
@@ -322,7 +342,6 @@ const Game = () => {
                                     <button 
                                         className="flex-1 bg-purple-500 hover:bg-purple-600 text-white py-3 rounded-lg text-xl transition-all"
                                         onClick={handlePreviousQuestion}
-                                        disabled={currentQuestionIndex === 0}
                                     >
                                         ← Back
                                     </button>
