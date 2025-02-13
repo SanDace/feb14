@@ -66,7 +66,7 @@ const Game = () => {
         },
         {
             question: " What is MY favorite food?",
-            answer: "You "
+            answer: "You 👉👈"
         },
         {
             question: "Click to capture your pic 📸",
