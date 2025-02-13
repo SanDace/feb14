@@ -171,7 +171,7 @@ const Game = () => {
             <img src="/d.gif" alt="Your Image" className="w-[340px] h-[200px] object-cover object-top rounded-lg mx-auto" />
             </div>,
             answer:
-            <p className="text-center text-sm text-gray-500 ">I don't want the prettiest girl to be left with empty wishes</p>
+            <p className="text-center text-sm text-gray-500 ">I don't want the most prettiest girl to be left with empty wishes 🌸</p>
             
         }
 
