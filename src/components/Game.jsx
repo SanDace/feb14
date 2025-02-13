@@ -18,9 +18,48 @@ const Game = () => {
             answer: "Anywhere with you would be magical! ✨"
         },
         {
-            question: "Can I have a hug? 🤗",
-            answer: "Here's the biggest virtual hug! 🫂"
+            question: "Where do you live?",
+            answer: "In my heart 💝"
+        },
+            {
+                question: "Do i miss you??",
+                answer: "Nha , u always in my mind 🧠"
+            },
+    
+        {
+            question: "Which Anime are we Watching Together? ",
+            answer: "JJk, 👀"
+        },
+        {
+            question: " What is MY favorite food?",
+            answer: "You "
+        },
+        {
+            question: "Click to capture your pic 📸",
+            answer: 
+            <div className="flex flex-col justify-center items-center">
+            <img src="/monket.webp" alt="Your Image" className="w-[200px] h-[300px] object-cover rounded-lg mx-auto" />
+            <p className="text-center text-sm text-gray-500 pt-4">Your Beauty cant be described in words</p>
+            </div>
+            
+        },
+        {
+            question: "Can I get A kiss 💋" ,
+            answer: 
+            <div className="flex flex-col justify-center items-center">
+            <img src="/kiss.gif" alt="Your Image" className="w-[400px] h-[300px] object-cover rounded-lg mx-auto" />
+            <p className="text-center text-sm text-gray-500 pt-4">Lol</p>
+            </div>
+        },
+        {
+            question: "You reading this  📚👨‍📖" ,
+            answer: 
+            <div className="flex flex-col justify-center items-center">
+            <img src="/planned.gif" alt="Your Image" className="w-[260px] h-[150px] object-cover rounded-lg mx-auto" />
+            <p className="text-center text-sm text-gray-500 pt-4">Was all part of my Plan</p>
+            </div>
         }
+
     ];
 
     const moveNoButton = () => {
@@ -46,6 +85,8 @@ const Game = () => {
         setTimeout(() => {
             setShowParty(false);
             setShowMessage(true);
+            setCurrentQuestionIndex(0); // Reset to first question
+            setShowAnswer(false); // Reset answer visibility
         }, 2500);
     };
 
@@ -148,18 +189,26 @@ const Game = () => {
                     {!showMessage ? (
                         <>
                             <h1 className="text-3xl md:text-4xl mb-12 font-bold text-pink-600">
-                                Will you be my Valentine? 💖
+                                Will you be my Carmilla🌸
                             </h1>
                             <div className="flex flex-col items-center gap-8">
                                 <button
                                     onClick={handleYesClick}
                                     className="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-lg text-xl transition-all shadow-md hover:scale-105"
                                 >
-                                    Yes 😍
+                Yes 🙇‍♂️ 
                                 </button>
                                  
                                 <button
-                                    onClick={moveNoButton}
+                                    onClick={(e) => {
+                                        moveNoButton();
+                                        const emojis = ['😏', '🤪', '😝','just say yes', '🤭', '😌', "call an ambulance", "sad", "still trying to say no"," am heart broken"];
+                                        let randomEmoji;
+                                        do {
+                                            randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+                                        } while (randomEmoji === e.target.lastChild.textContent.trim());
+                                        e.target.lastChild.textContent = ` ${randomEmoji}`;
+                                    }}
                                     style={{
                                         position: 'absolute',
                                         left: `${noButtonPosition.x}px`,
@@ -198,17 +247,26 @@ const Game = () => {
                                 <div className="flex justify-between gap-4">
                                     <button 
                                         className="flex-1 bg-purple-500 hover:bg-purple-600 text-white py-3 rounded-lg text-xl transition-all"
-                                        onClick={() => setShowMessage(false)}
+                                        onClick={handlePreviousQuestion}
+                                        disabled={currentQuestionIndex === 0}
                                     >
                                         ← Back
                                     </button>
                                     
-                                    {currentQuestionIndex < questions.length - 1 && (
+                                    {currentQuestionIndex < questions.length - 1 ? (
                                         <button
                                             className="flex-1 bg-purple-500 hover:bg-purple-600 text-white py-3 rounded-lg text-xl transition-all"
                                             onClick={handleNextQuestion}
                                         >
                                             Next →
+                                        </button>
+                                    ) : (
+                                        <button
+                                            className="flex-1 bg-purple-500 hover:bg-purple-600 text-white py-3 rounded-lg text-xl transition-all"
+                                            // onClick={() => window.location.href = '/'}
+                                            onClick={() => setShowMessage(false)}
+                                        >
+                                            Go Home 🏠
                                         </button>
                                     )}
                                 </div>
