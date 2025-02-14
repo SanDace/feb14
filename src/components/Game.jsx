@@ -103,8 +103,16 @@ const Game = () => {
             <p className="text-center text-sm text-gray-500 pt-4"></p>
             </div>
         },
+        {
+            question: "I Love You ❤️" ,
+            answer: 
+            <div className="flex flex-col justify-center items-center">
+            <img src="/prank.gif" alt="Your Image" className="w-[300px] h-[300px] object-cover rounded-lg mx-auto" />
+            <p className="text-center text-sm text-gray-500 pt-4">Look there is a camera recording in front of you</p>
+            </div>
+        },
        {
-            question: "And just remember this",
+            question: "But just remember this",
             answer:
             <div className="flex flex-col justify-center items-center">
             <img src="/fall.gif" alt="Your Image" className="w-[390px] h-[250px]  object-cover rounded-lg mx-auto" />
